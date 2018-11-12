@@ -1,0 +1,1373 @@
+{
+	"info": {
+		"_postman_id": "a68a093f-620e-4b9a-98f3-28cc66fb8cc8",
+		"name": "Design Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AppBundle",
+			"item": [
+				{
+					"name": "Create app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3350992-9b20-47c3-98ce-1b20d4db0f3b",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"uploadAppUrl\", body[\"uploadParameters\"][\"endpointURL\"]);",
+									"postman.setGlobalVariable(\"formKey\", body[\"uploadParameters\"][\"formData\"][\"key\"]);",
+									"postman.setGlobalVariable(\"formCT\", body[\"uploadParameters\"][\"formData\"][\"content-type\"]);",
+									"postman.setGlobalVariable(\"formPolicy\", body[\"uploadParameters\"][\"formData\"][\"policy\"]);",
+									"postman.setGlobalVariable(\"formSAS\", body[\"uploadParameters\"][\"formData\"][\"success_action_status\"]);",
+									"postman.setGlobalVariable(\"formRedirect\", body[\"uploadParameters\"][\"formData\"][\"success_action_redirect\"]);",
+									"postman.setGlobalVariable(\"formSignature\", body[\"uploadParameters\"][\"formData\"][\"x-amz-signature\"]);",
+									"postman.setGlobalVariable(\"formAlgorithm\", body[\"uploadParameters\"][\"formData\"][\"x-amz-algorithm\"]);",
+									"postman.setGlobalVariable(\"formCredential\", body[\"uploadParameters\"][\"formData\"][\"x-amz-credential\"]);",
+									"postman.setGlobalVariable(\"formDate\", body[\"uploadParameters\"][\"formData\"][\"x-amz-date\"]);",
+									"postman.setGlobalVariable(\"formEncryption\", body[\"uploadParameters\"][\"formData\"][\"x-amz-server-side-encryption\"]);",
+									"postman.setGlobalVariable(\"formToken\", body[\"uploadParameters\"][\"formData\"][\"x-amz-security-token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"engine\" : \"Autodesk.3dsMax+2018\",\r\n    \"id\": \"yourAppbundleName\"\r\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create app version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3db9f1b4-1eb0-4217-9fe6-b73a2d2a8e18",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"uploadAppUrl\", body[\"uploadParameters\"][\"endpointURL\"]);",
+									"postman.setGlobalVariable(\"formKey\", body[\"uploadParameters\"][\"formData\"][\"key\"]);",
+									"postman.setGlobalVariable(\"formCT\", body[\"uploadParameters\"][\"formData\"][\"content-type\"]);",
+									"postman.setGlobalVariable(\"formPolicy\", body[\"uploadParameters\"][\"formData\"][\"policy\"]);",
+									"postman.setGlobalVariable(\"formSAS\", body[\"uploadParameters\"][\"formData\"][\"success_action_status\"]);",
+									"postman.setGlobalVariable(\"formSignature\", body[\"uploadParameters\"][\"formData\"][\"x-amz-signature\"]);",
+									"postman.setGlobalVariable(\"formAlgorithm\", body[\"uploadParameters\"][\"formData\"][\"x-amz-algorithm\"]);",
+									"postman.setGlobalVariable(\"formCredential\", body[\"uploadParameters\"][\"formData\"][\"x-amz-credential\"]);",
+									"postman.setGlobalVariable(\"formDate\", body[\"uploadParameters\"][\"formData\"][\"x-amz-date\"]);",
+									"postman.setGlobalVariable(\"formEncryption\", body[\"uploadParameters\"][\"formData\"][\"x-amz-server-side-encryption\"]);",
+									"postman.setGlobalVariable(\"formToken\", body[\"uploadParameters\"][\"formData\"][\"x-amz-security-token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"engine\" : \"Autodesk.3dsMax+2018\"\r\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/versions",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload app to Design Automation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key",
+									"value": "{{formKey}}",
+									"type": "text"
+								},
+								{
+									"key": "content-type",
+									"value": "{{formCT}}",
+									"type": "text"
+								},
+								{
+									"key": "policy",
+									"value": "{{formPolicy}}",
+									"type": "text"
+								},
+								{
+									"key": "success_action_status",
+									"value": "{{formSAS}}",
+									"type": "text"
+								},
+								{
+									"key": "success_action_redirect",
+									"value": "{{formRedirect}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-signature",
+									"value": "{{formSignature}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-credential",
+									"value": "{{formCredential}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-algorithm",
+									"value": "{{formAlgorithm}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-date",
+									"value": "{{formDate}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-server-side-encryption",
+									"value": "{{formEncryption}}",
+									"type": "text"
+								},
+								{
+									"key": "x-amz-security-token",
+									"value": "{{formToken}}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{uploadAppUrl}}",
+							"host": [
+								"{{uploadAppUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create app alias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"yourAppAlias\",\r\n    \"version\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify app alias",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"version\": 2\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppName/aliases/yourAppAlias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppName",
+								"aliases",
+								"yourAppAlias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of available apps",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get app details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourNickname.yourAppbundleName+yourAppAlias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourNickname.yourAppbundleName+yourAppAlias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of version for an app",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/versions",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get app version details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/versions/1",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"versions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get app alias details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/aliases/test",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"aliases",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of aliases for an app",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an app (all versions and aliases)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete app alias",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/aliases/test",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"aliases",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete app version",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/appbundles/yourAppbundleName/versions/1",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"appbundles",
+								"yourAppbundleName",
+								"versions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activity",
+			"item": [
+				{
+					"name": "Create activity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"ExportToFBX\",\r\n    \"commandLine\": \"$(engine.path)/3dsmaxbatch.exe -sceneFile \\\"$(args[InputFile].path)\\\" \\\"$(settings[script].path)\\\"\",\r\n    \"description\": \"Export a single max file to FBX\",\r\n    \"appbundles\": [\r\n        ],\r\n    \"engine\" : \"Autodesk.3dsMax+2019\",\r\n    \"parameters\": {\r\n        \"InputFile\" : {\r\n            \"zip\": false,\r\n            \"description\": \"Input 3ds Max file\",\r\n            \"ondemand\": false,\r\n            \"required\": true,\r\n            \"verb\": \"get\",\r\n            \"localName\": \"input.max\"\r\n        },\r\n        \"OutputFile\": {\r\n            \"zip\": false,\r\n            \"ondemand\": false,\r\n            \"verb\": \"put\",\r\n            \"description\": \"Output FBX file\",\r\n            \"required\": true,\r\n            \"localName\": \"output.fbx\"\r\n        }\r\n    },\r\n    \"settings\": {\r\n       \"script\": \"exportFile (sysInfo.currentdir + \\\"/output.fbx\\\") #noPrompt using:FBXEXP\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create activity version",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"commandLine\": \"$(engine.path)/3dsmaxbatch.exe -sceneFile \\\"$(args[InputFile].path)\\\" \\\"$(settings[script].path)\\\"\",\n    \"description\": \"run a ms and return OutputMax file\",\n    \"appbundles\": [\n\t    \t\"myNickname.ListMyObjects+test\"\n    \t],\n    \"engine\" : \"Autodesk.3dsMax+2018\",\n    \"parameters\": {\n\t\t\"InputFile\" : {\n\t\t    \"zip\": false,\n\t\t\t\"description\": \"input file on which to run the script\",\n            \"ondemand\": false,\n\t\t\t\"required\": true,\n            \"verb\": \"get\",\n            \"localName\": \"input.max\"\n\t\t},\n\t\t\"OutputFile\": {\n\t\t    \"zip\": false,\n            \"ondemand\": false,\n            \"verb\": \"put\",\n            \"description\": \"The output text file\",\n            \"required\": true,\n            \"localName\": \"list.txt\"\n\t\t}\n    },\n    \"settings\": {\n       \"script\": \"ListMyObject()\"\n   }\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/versions",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create activity alias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"myalias\",\r\n    \"version\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify activity alias",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"version\": 2\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/aliases/myalias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"aliases",
+								"myalias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of available activities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/yourNickname.ExportToFBX+myalias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"yourNickname.ExportToFBX+myalias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of version for an activity",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/versions",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity version details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/versions/1",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"versions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activity alias details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/aliases/myalias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"aliases",
+								"myalias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of aliases for an activity",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/aliases",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"aliases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an activity (all versions and aliases)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete activity alias",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/aliases/myalias",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"aliases",
+								"myalias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete activity version",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/activities/ExportToFBX/versions/1",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"activities",
+								"ExportToFBX",
+								"versions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Engine",
+			"item": [
+				{
+					"name": "Get engine details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/engines/Autodesk.3dsMax+2018",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"engines",
+								"Autodesk.3dsMax+2018"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of available engines",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/engines",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"engines"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get nickname",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/forgeapps/me",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"forgeapps",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Setup nickname",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nickname\": \"yourNickname\"\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/forgeapps/me",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"forgeapps",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user (everything owned by yourself)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/forgeapps/me",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"forgeapps",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f019482-ca4b-4984-9130-2d2b78643c42",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"forge_token\", body[\"access_token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "YourForgeClientIdHere",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "YourForgeClientSecretHere",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "code:all",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authenticateUrl}}",
+							"host": [
+								"{{authenticateUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WorkItem",
+			"item": [
+				{
+					"name": "Send Workitem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c13030bc-898d-42e5-ab1d-d439ce3eb1be",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"workitemId\", body[\"id\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"activityId\": \"yourNickname.ExportToFBX+myalias\",\n\t\"arguments\": {\n\t\t\"InputFile\": {\n\t\t\t\"url\": \"https://SomeUrl.com/to/download/the/input/max/file\",\n\t\t\t\"verb\": \"get\"\n\t\t},\n\t\t\"OutputFile\": {\n\t\t\t\"url\": \"https://SomeUrl.com/to/upload/the/output/FBX/file\",\n\t\t\t\"verb\": \"put\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/workitems",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"workitems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Workitem status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/workitems/{{workitemId}}",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"workitems",
+								"{{workitemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Workitem",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{forge_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{dasApiRoot}}/workitems/{{workitemId}}",
+							"host": [
+								"{{dasApiRoot}}"
+							],
+							"path": [
+								"workitems",
+								"{{workitemId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get everything shared",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{forge_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{dasApiRoot}}/shares",
+					"host": [
+						"{{dasApiRoot}}"
+					],
+					"path": [
+						"shares"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "acb5ea1c-8217-4e18-9b58-8b25cfa5f885",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d4e97369-dc1c-400a-9a66-79673d6b9d4f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
